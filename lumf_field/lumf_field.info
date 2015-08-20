@@ -1,0 +1,9 @@
+name = Less UI More Fun with Field
+description = Less UI More Fun with Field
+dependencies[] = lumf
+core = 7.x
+package = Less UI More Fun
+files[] = lumf_field.module
+files[] = lumf_field.install
+
+

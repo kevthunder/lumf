@@ -1,0 +1,10 @@
+name = [todo] lumf helper name
+description = [todo] lumf helper description
+dependencies[] = lumf
+hidden = TRUE
+core = 7.x
+package = Less UI More Fun
+files[] = lumf_base.module
+files[] = lumf_base.install
+
+

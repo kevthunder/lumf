@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the lumf module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function lumf_install() {
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function lumf_uninstall() {
+}
+
+/**
+ * Implementation of hook_schema_alter().
+ */
+function lumf_schema_alter(&$schema) {
+}
+

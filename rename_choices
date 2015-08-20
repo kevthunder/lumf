@@ -1,0 +1,9 @@
+<?php
+  $renameVersion = '0.1.0';
+  $template = 'simplified_field_creation';
+  $templateVersion = '0.0.1';
+  $choices = array (
+    'title' => 'Less UI More Fun',
+    'description' => 'Less UI More Fun, is meant to free you from the tyranny of drupal UI and allow the programmer within you to be reborn',
+  );
+?>

@@ -1,0 +1,10 @@
+name = Less UI More Fun with Node
+description = Less UI More Fun with Node
+dependencies[] = machinenamed_node
+dependencies[] = lumf
+core = 7.x
+package = Less UI More Fun
+files[] = lumf_node.module
+files[] = lumf_node.install
+
+

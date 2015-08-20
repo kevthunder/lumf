@@ -1,0 +1,8 @@
+name = Less UI More Fun
+description = "Less UI More Fun" is meant to free you from the tyranny of drupal UI and allow the programmer within you to be reborn
+core = 7.x
+package = Less UI More Fun
+files[] = lumf.module
+files[] = lumf.install
+
+

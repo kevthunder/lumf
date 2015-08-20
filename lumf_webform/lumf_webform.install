@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the lumf_webform module.
+ */
+
+/**
+ * Implementation of hook_install().
+ */
+function lumf_webform_install() {
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function lumf_webform_uninstall() {
+}
+
+/**
+ * Implementation of hook_schema_alter().
+ */
+function lumf_webform_schema_alter(&$schema) {
+}
+

@@ -1,0 +1,10 @@
+<?php
+  $renameVersion = '0.1.0';
+  $template = 'lumf_base';
+  $templateVersion = '0.0.1';
+  $choices = array (
+    'helper_name' => 'Field',
+    'helper_title' => 'Less UI More Fun with Field',
+    'helper_description' => 'Less UI More Fun with Field',
+  );
+?>

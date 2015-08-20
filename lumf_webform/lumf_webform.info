@@ -1,0 +1,10 @@
+name = Less UI More Fun with Webform
+description = Less UI More Fun with Webform
+dependencies[] = lumf_node
+dependencies[] = webform
+core = 7.x
+package = Less UI More Fun
+files[] = lumf_webform.module
+files[] = lumf_webform.install
+
+

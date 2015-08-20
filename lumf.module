@@ -1,0 +1,635 @@
+<?php
+
+
+
+/**
+ * @file lumf.module
+ * Main file for the lumf module.
+ *
+ */
+ include_once 'lumf.inc';
+ 
+ function lumf_menu() {
+    $items['lumf_test'] = array(
+      'page callback' => 'lumf_test',
+      'access callback' => true
+    );
+    return $items;
+  }
+
+  function lumf_test() {
+    
+    error_reporting(E_ALL);
+    // kpr(node_load(1143));
+    // kpr(node_load(14263));
+    // kpr(node_load(14265));
+    try{
+      // kpr(language_default());
+      // trigger_error('test',E_USER_WARNING);
+      $result = db_query("SHOW TABLES LIKE 'milestone_newsletters'")->fetchCol();
+      var_dump($result);
+      $result = db_query("SELECT schema_version FROM system WHERE name='pah_newsletter'")->fetchCol();
+      var_dump($result);
+      // $result = db_query('DROP TABLE IF EXISTS milestone_newsletters, milestone_newsletter_users ,trial_newsletter_users');//->fetchAll();
+      // var_dump($result);
+      // lumf('webform')->save('ucanada survey',array(
+        // 'title'=>'Abbvie UCanADA Sondage en ligne', 
+        // 'language'=>'fr',
+        // 'components' => array(
+          // 'about_pah' => array('type' => 'fieldset', 'name' => 'Au sujet du programme Patients à Cœur', 'children' => array(
+              // 'satisfied_pah'       => array('type' => 'select', 'name' => 'À quel point êtes-vous satisfait du programme Patients à Cœur en général', 'options' =>array(
+                // '4' => 'Extrêmement satisfait',
+                // '3' => 'Très satisfait',
+                // '2' => 'Plutôt satisfait',
+                // '1' => 'Peu satisfait',
+                // '0' => 'Pas satisfait du tout'
+              // )),
+              // 'satisfied_pah_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+              // 'pah_appreciate'      => array('type' => 'textarea', 'name' => 'Qu’avez-vous le plus apprécié ?'),
+              // 'pah_improve'         => array('type' => 'textarea', 'name' => 'Comment pourrions-nous améliorer le programme à l’avenir ?'),
+              // 'journey_box' => array('type' => 'select', 'name' => 'Avez-vous commandé votre coffret de l’étude ?', 'options' =>array(
+                // 'yes' => 'Oui',
+                // 'no' => 'Non',
+              // )),
+              // 'journey_box_rating'   => array('type' => 'select', 'name' => 'Évaluation de l’appréciation', 'options' =>array(
+                // '4' => 'Extrêmement satisfait',
+                // '3' => 'Très satisfait',
+                // '2' => 'Plutôt satisfait',
+                // '1' => 'Peu satisfait',
+                // '0' => 'Pas satisfait du tout'
+              // )),
+              // 'journey_box_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+              
+              // 'cards' => array('type' => 'fieldset', 'name' => 'Parlez-nous des cartes reçues à chacune de vos visites', 'children' => array(
+                // 'cards_idea_rating'   => array('type' => 'select', 'name' => 'Était-ce une bonne idée ?', 'options' =>array(
+                  // '4' => 'Extrêmement satisfait',
+                  // '3' => 'Très satisfait',
+                  // '2' => 'Plutôt satisfait',
+                  // '1' => 'Peu satisfait',
+                  // '0' => 'Pas satisfait du tout'
+                // )),
+                // 'cards_idea_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+                // 'cards_informative_rating'   => array('type' => 'select', 'name' => 'Vous ont-elles bien renseigné ?', 'options' =>array(
+                  // '4' => 'Extrêmement satisfait',
+                  // '3' => 'Très satisfait',
+                  // '2' => 'Plutôt satisfait',
+                  // '1' => 'Peu satisfait',
+                  // '0' => 'Pas satisfait du tout'
+                // )),
+                // 'cards_informative_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+                // 'cards_questionnaires_rating'   => array('type' => 'select', 'name' => 'Vous ont-elles incité à remplir vos questionnaires ?', 'options' =>array(
+                  // '4' => 'Extrêmement satisfait',
+                  // '3' => 'Très satisfait',
+                  // '2' => 'Plutôt satisfait',
+                  // '1' => 'Peu satisfait',
+                  // '0' => 'Pas satisfait du tout'
+                // )),
+                // 'cards_questionnaires_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+              // )),
+              
+              // 'milestone_newsletter' => array('type' => 'select', 'name' => 'Vous êtes-vous abonné aux infolettres d’UCanADA ?', 'options' =>array(
+                // 'yes' => 'Oui',
+                // 'no' => 'Non',
+              // )),
+              // 'milestone_newsletters_rating'   => array('type' => 'select', 'name' => 'Évaluation de l’appréciation', 'options' =>array(
+                // '4' => 'Extrêmement satisfait',
+                // '3' => 'Très satisfait',
+                // '2' => 'Plutôt satisfait',
+                // '1' => 'Peu satisfait',
+                // '0' => 'Pas satisfait du tout'
+              // )),
+              // 'milestone_newsletters_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+              
+              // 'trial_newsletter' => array('type' => 'select', 'name' => 'Vous êtes-vous abonné aux infolettre "Des nouvelles de mon étude" ?', 'options' =>array(
+                // 'yes' => 'Oui',
+                // 'no' => 'Non',
+              // )),
+              // 'trial_newsletter_rating'   => array('type' => 'select', 'name' => 'Évaluation de l’appréciation', 'options' =>array(
+                // '4' => 'Extrêmement satisfait',
+                // '3' => 'Très satisfait',
+                // '2' => 'Plutôt satisfait',
+                // '1' => 'Peu satisfait',
+                // '0' => 'Pas satisfait du tout'
+              // )),
+              // 'trial_newsletter_why'   => array('type' => 'textarea', 'name' => 'Pourquoi ?'),
+          // )),
+          // 'about_questionnaires' => array('type' => 'fieldset', 'name' => 'Au sujet des questionnaires de l’étude UCanADA', 'children' => array(
+              // 'questionnaires_location'   => array('type' => 'grid', 'name' => 'Où préféreriez-vous remplir vos questionnaires d’étude ?',
+                // 'options' =>array(
+                  // '4' => 'Extrêmement',
+                  // '3' => 'Très',
+                  // '2' => 'Plutôt',
+                  // '1' => 'Peu',
+                  // '0' => 'Pas du tout'
+                // ), 
+                // 'questions' =>array(
+                  // 'home' => 'À la maison',
+                  // 'private_room' => 'Dans une salle privée chez le médecin',
+                  // 'waiting_room' => 'Dans la salle d’attente chez le médecin',
+                // )
+              // ),
+              // 'questionnaires_medium'   => array('type' => 'grid', 'name' => 'De quelle façon préféreriez-vous remplir vos questionnaires d’étude ?',
+                // 'options' =>array(
+                  // '4' => 'Extrêmement',
+                  // '3' => 'Très',
+                  // '2' => 'Plutôt',
+                  // '1' => 'Peu',
+                  // '0' => 'Pas du tout'
+                // ), 
+                // 'questions' =>array(
+                  // 'paper' => 'En format papier',
+                  // 'computer' => 'Par ordinateur ou tablette électronique chez le médecin ?',
+                  // 'email' => 'Par courriel',
+                  // 'telephone' => 'Par téléphone',
+                // )
+              // ),
+          // )),
+          // 'thank1' => 'Au nom de toute l’équipe clinique d’AbbVie Canada, nous vous remercions de votre participation.',
+          
+          // 'subscribe_intro' => 'Vos commentaires nous fournissent de l’information cruciale nous permettant de mieux comprendre les besoins des participants et d’outiller davantage les patients.',
+          
+          // 'subscribe' => array('type' => 'select', 'name' => 'Acceptez-vous de continuer à nous donner votre appui en prenant part à de prochaines discussions ?', 'options' =>array(
+            // 'yes' => 'Oui',
+            // 'no' => 'Non',
+          // )),
+          // 'email' => array('name'=>'Votre adresse courriel'),
+          // 'thank2' => 'Merci'
+        // )
+      // ));
+      
+      // lumf('webform')->save('ucanada survey',array(
+        // 'title'=>'Abbvie UCanADA Online survey', 
+        // 'language'=>'en',
+        // 'components' => array(
+          // 'about_pah' => array('type' => 'fieldset', 'name' => 'About the Patients at Heart Program', 'children' => array(
+              // 'satisfied_pah'       => array('type' => 'select', 'name' => 'How satisfied are you overall with the Patients at Heart program?', 'options' =>array(
+                // '4' => 'Extremely satisfied',
+                // '3' => 'Quite satisfied',
+                // '2' => 'Somewhat satisfied',
+                // '1' => 'Less satisfied',
+                // '0' => 'Not at all satisfied'
+              // )),
+              // 'satisfied_pah_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+              // 'pah_appreciate'      => array('type' => 'textarea', 'name' => 'What do you appreciate the most?'),
+              // 'pah_improve'         => array('type' => 'textarea', 'name' => 'How could we improve the program in the future?'),
+              // 'journey_box' => array('type' => 'select', 'name' => 'Did you order your UCanADA study Journey Box?', 'options' =>array(
+                // 'yes' => 'Yes',
+                // 'no' => 'No',
+              // )),
+              // 'journey_box_rating'   => array('type' => 'select', 'name' => 'Appreciation rating', 'options' =>array(
+                // '4' => 'Extremely satisfied',
+                // '3' => 'Quite satisfied',
+                // '2' => 'Somewhat satisfied',
+                // '1' => 'Less satisfied',
+                // '0' => 'Not at all satisfied'
+              // )),
+              // 'journey_box_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+              
+              // 'cards' => array('type' => 'fieldset', 'name' => 'Tell us about the cards you receive at every visit', 'children' => array(
+                // 'cards_idea_rating'   => array('type' => 'select', 'name' => 'Are they a good idea?', 'options' =>array(
+                  // '4' => 'Extremely satisfied',
+                  // '3' => 'Quite satisfied',
+                  // '2' => 'Somewhat satisfied',
+                  // '1' => 'Less satisfied',
+                  // '0' => 'Not at all satisfied'
+                // )),
+                // 'cards_idea_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+                // 'cards_informative_rating'   => array('type' => 'select', 'name' => 'Are they informative?', 'options' =>array(
+                  // '4' => 'Extremely satisfied',
+                  // '3' => 'Quite satisfied',
+                  // '2' => 'Somewhat satisfied',
+                  // '1' => 'Less satisfied',
+                  // '0' => 'Not at all satisfied'
+                // )),
+                // 'cards_informative_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+                // 'cards_questionnaires_rating'   => array('type' => 'select', 'name' => 'Do they encourage you to fill out your questionnaires?', 'options' =>array(
+                  // '4' => 'Extremely satisfied',
+                  // '3' => 'Quite satisfied',
+                  // '2' => 'Somewhat satisfied',
+                  // '1' => 'Less satisfied',
+                  // '0' => 'Not at all satisfied'
+                // )),
+                // 'cards_questionnaires_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+              // )),
+              
+              // 'milestone_newsletter' => array('type' => 'select', 'name' => 'Did you subscribe to the UCanADA Newsletters?', 'options' =>array(
+                // 'yes' => 'Yes',
+                // 'no' => 'No',
+              // )),
+              // 'milestone_newsletters_rating'   => array('type' => 'select', 'name' => 'Appreciation rating', 'options' =>array(
+                // '4' => 'Extremely satisfied',
+                // '3' => 'Quite satisfied',
+                // '2' => 'Somewhat satisfied',
+                // '1' => 'Less satisfied',
+                // '0' => 'Not at all satisfied'
+              // )),
+              // 'milestone_newsletters_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+              
+              // 'trial_newsletter' => array('type' => 'select', 'name' => 'Did you subscribe to receive quarterly updates about your study?', 'options' =>array(
+                // 'yes' => 'Yes',
+                // 'no' => 'No',
+              // )),
+              // 'trial_newsletter_rating'   => array('type' => 'select', 'name' => 'Appreciation rating', 'options' =>array(
+                // '4' => 'Extremely satisfied',
+                // '3' => 'Quite satisfied',
+                // '2' => 'Somewhat satisfied',
+                // '1' => 'Less satisfied',
+                // '0' => 'Not at all satisfied'
+              // )),
+              // 'trial_newsletter_why'   => array('type' => 'textarea', 'name' => 'Why ?'),
+          // )),
+          // 'about_questionnaires' => array('type' => 'fieldset', 'name' => 'About the UCanADA Study questionnaires', 'children' => array(
+              // 'questionnaires_location'   => array('type' => 'grid', 'name' => 'Where would you prefer to fill out your study questionnaires?',
+                // 'options' =>array(
+                  // '4' => 'Extremely prefered',
+                  // '3' => 'Quite prefered',
+                  // '2' => 'Somewhat prefered',
+                  // '1' => 'Less prefered',
+                  // '0' => 'Not at all prefered'
+                // ), 
+                // 'questions' =>array(
+                  // 'home' => 'At home',
+                  // 'private_room' => 'In a private room at the clinic',
+                  // 'waiting_room' => 'In a waiting room at the clinic',
+                // )
+              // ),
+              // 'questionnaires_medium'   => array('type' => 'grid', 'name' => 'How would you prefer to fill out your study questionnaires?',
+                // 'options' =>array(
+                  // '4' => 'Extremely prefered',
+                  // '3' => 'Quite prefered',
+                  // '2' => 'Somewhat prefered',
+                  // '1' => 'Less prefered',
+                  // '0' => 'Not at all prefered'
+                // ), 
+                // 'questions' =>array(
+                  // 'paper' => 'In paper format?',
+                  // 'computer' => 'On your computer or tablet?',
+                  // 'email' => 'By email?',
+                  // 'telephone' => 'By telephone?',
+                // )
+              // ),
+          // )),
+          // 'thank1' => 'On behalf of the entire AbbVie Canada clinical team, we thank you for your input.',
+          
+          // 'subscribe' => array('type' => 'select', 'name' => 'Your feed-back provides us with vital information that will help us better understand people’s needs and continue to empower patients. Would you like to extend your support by participating in future discussions?', 'options' =>array(
+            // 'yes' => 'Yes',
+            // 'no' => 'No',
+          // )),
+          // 'email' => array('name'=>'Your email address'),
+          // 'thank2' => 'Thank you'
+        // )
+      // ));
+      
+      
+      // $survey_nid = machinenamed_node_nid('ucanada survey');
+      // kpr($survey_nid);
+      // lumf('content_section')->create_or_update('dashboard_sondage_link', array(
+        // 'field' => 'field_sections',
+        // 'target' => variable_get('abbott_patients_dashboard_nid_content'),
+        // 'section' => array(
+          // 'type' => 'section',
+          // 'title'=> 'Aidez nous à optimiser votre expérience',
+          // 'field_class'=>'dashboard-sondage-link feedback-not-filled not-role-anonymous-user',
+          // 'body'=>'<p>Lorem ipsum</p>'."\n".'<p><a href="/node/'.$survey_nid.'">Répondre au sondage</a></p>'
+        // ),
+        // 'parent' => 'dashboard_after_timeline',
+      // ));
+      
+      // lumf('field')->save_multi(array(
+          // array('field_name' => 'field_landing_page', 'type'=>'entityreference', 'label'=>'Landing Page',
+            // 'settings' => array(
+              // 'handler_settings' => array(
+                // 'target_bundles' => array(
+                  // 'page' => 'page',
+                // ),
+              // ),
+              // 'target_type' => 'node',
+            // ),
+          // ),
+        // ),
+        // array('entity_type' => 'node','bundle' => 'trial')
+      // );
+    } catch (Exception $e) {
+      kpr($e);
+      echo '<table>';
+      echo($e->xdebug_message );
+      echo '</table>';
+    } 
+      // lumf('content_section')->create_or_update('dashboard_after_timeline', array(
+        // 'field' => 'field_sections',
+        // 'target' => variable_get('abbott_patients_dashboard_nid_content'),
+        // 'section' => array(
+          // 'type' => 'section',
+          // 'title'=> 'Boxes After Timeline',
+          // 'field_class'=>'dashboard-after-timeline notitle',
+        // ),
+      // ));
+      
+      // lumf('content_section')->create_or_update('dashboard_newsletter_subscribe', array(
+        // 'field' => 'field_sections',
+        // 'target' => variable_get('abbott_patients_dashboard_nid_content'),
+        // 'section' => array(
+          // 'type' => 'section',
+          // 'title'=> 'De l\'information sur cette etude dans vos courriels',
+          // 'field_class'=>'dashboard-newsletter-subscribe newsletter-not-subscripted not-role-anonymous-user',
+          // 'body'=>'<p>Lorem ipsum</p>'."\n".'<p><a class="modal" href="/node/%trial_nid%/newsletter_subscribe?ajax=1&destination=user/dashboard">M\'inscrire à l\'infolettre</a></p>'
+        // ),
+        // 'parent' => 'dashboard_after_timeline',
+      // ));
+      
+      // lumf('content_section')->create_or_update('dashboard_subscribe_link', array(
+        // 'field' => 'field_sections',
+        // 'target' => variable_get('abbott_patients_dashboard_nid_content'),
+        // 'section' => array(
+          // 'type' => 'section',
+          // 'title'=> 'Demeurez informé sur cette étude',
+          // 'field_class'=>'dashboard-subscribe-link role-anonymous-user',
+          // 'body'=>'<p>Lorem ipsum</p>'."\n".'<p><a href="/access-trial/update-account">Créer mon compte Patient à Coeur</a></p>'
+        // ),
+        // 'parent' => 'dashboard_after_timeline',
+      // ));
+      
+      // lumf('content_section')->create_or_update('dashboard_sondage_link', array(
+        // 'field' => 'field_sections',
+        // 'target' => variable_get('abbott_patients_dashboard_nid_content'),
+        // 'section' => array(
+          // 'type' => 'section',
+          // 'title'=> 'Aidez nous à optimiser votre expérience',
+          // 'field_class'=>'dashboard-sondage-link feedback-not-filled not-role-anonymous-user',
+          // 'body'=>'<p>Lorem ipsum</p>'."\n".'<p><a href="/content/feedback-popup">Répondre au sondage</a></p>'
+        // ),
+        // 'parent' => 'dashboard_after_timeline',
+      // ));
+    // kpr(field_read_instance('node', 'field_newsletter_trial', 'patients_trials'));
+    // kpr(field_read_field('field_newsletter_trial'));
+    // kpr(field_read_instance('node', 'field_allow_portal', 'trial'));
+    // kpr(field_read_field('field_allow_portal'));
+    
+    // module_load_include('inc', 'lumf', 'field_helper');
+    // create_or_update_fields(array(
+        // array('field_name' => 'field_newsletter_trial', 'type'=>'list_boolean', 'label'=>'Subscribe to study tracking newsletter',
+          // 'widget' => array(
+            // 'type' => 'options_onoff',
+            // 'settings' => array(
+              // 'display_label' => 1
+            // )
+          // )
+        // ),
+        // array('field_name' => 'field_newsletter_milestone',  'type'=>'list_boolean', 'label'=>'Subscribe to quaterly informational newsletter',
+          // 'widget' => array(
+            // 'type' => 'options_onoff',
+            // 'settings' => array(
+              // 'display_label' => 1
+            // )
+          // )
+        // ),
+      // ),
+      // array('entity_type' => 'node','bundle' => 'patients_trials')
+    // );
+    
+    
+    // module_load_include('inc', 'lumf', 'custom_block_helper');
+    // create_or_update_custom_block('footer_links', array(
+        // 'info' => 'Footer Links',
+        // 'body' => '
+            // <p>
+                // This site is intended for the exclusive use of Canadian health care professionals. <a class="moreInfo" data-default="More info" data-close="Close" href="#">More info</a><br>
+                // If you practice outside Canada, <a href="http://www.abbvie.com/country-contacts/home.html" target="_blank">click here</a>.
+            // </p>
+
+            // <nav>
+                // <ul>
+                    // <li><a href="http://abbvie.ca/privacy/index?culture=fr-CA&amp;trackingSelection=yes" target="_blank">Privacy Policy</a></li>
+                    // <li><a href="http://abbvie.ca/terms/index?culture=fr-CA&amp;trackingSelection=yes" target="_blank">Terms of Use</a></li>
+                // </ul>
+            // </nav>',
+        // 'regions' => array(
+          // 'medinfo' => 'footer'
+        // )
+    // ));
+    // create_or_update_custom_block('copyright', array(
+        // 'info' => 'Copyright',
+        // 'body' => '<p class="copy">Copyright ©%year% AbbVie Corporation. Saint-Laurent, Québec, Canada. All Rights Reserved.</p>',
+        // 'regions' => array(
+          // 'medinfo' => 'footer'
+        // )
+    // ));
+    // module_load_include('inc', 'lumf', 'custom_block_helper');
+    // create_or_update_custom_block('footer_note', array(
+        // 'info' => 'Footer_note',
+        // 'body' => 'This site is intended for the exclusive use of Canadian health care professionals. It is a repository of medical information available at any time through a user-friendly search engine. To access the site, download medical information or ask questions online, please sign up first.',
+        // 'regions' => array(
+          // 'medinfo' => 'footer'
+        // )
+    // ));
+    
+    // kpr(variable_get('revisioning_edit_callback'));
+    // module_load_include('inc', 'lumf', 'block_helper');
+    // set_block_config(array(
+      // 'module' => 'revisioning',
+      // 'delta' => 'pending',
+      // 'theme' => 'seven',
+      // 'region' => 'dashboard_sidebar'
+    // ));
+    
+    // $node_options = variable_get('node_options_documents');
+    // kpr($node_options);
+    // kpr($node_options + array('revision_moderation'));
+    // variable_set('node_options_documents',$node_options + array('revision_moderation'));
+    // $node_type = node_type_load('documents');
+    // kpr($node_type);
+    
+    // $modules = user_permission_get_modules();
+    // kpr($modules);
+    // module_load_include('inc', 'lumf', 'node_helper');
+    // create_or_update_node_type(array(
+      // 'type' => 'faq',
+      // 'name' => 'FAQ',
+      // 'base' => 'node_content',
+      // 'module' => 'medinfo_faq',
+    // ));
+  
+    // module_load_include('inc', 'lumf', 'user_helper');
+    
+    // $vocabularies =  array('keywords','product_category','user_occupation','user_speciality','region');
+    // $vocab_permissions = array();
+    // foreach($vocabularies as $vocabName){
+      // $vocab = taxonomy_vocabulary_machine_name_load($vocabName);
+      // $vocab_permissions[] = 'edit terms in '.$vocab->vid;
+      // $vocab_permissions[] = 'delete terms in '.$vocab->vid;
+    // }
+    // $writer_permissions = array_merge($vocab_permissions,array(
+      // 'administer blocks',
+      // 'access dashboard',
+      // 'translate content',
+      // 'access contextual links',
+      // 'access devel information',
+      // 'use text format filtered_html',
+      // 'use text format full_html',
+      // 'translate interface',
+      // 'administer menu',
+      // 'administer content translations',
+      // 'access content overview',
+      // 'view own unpublished content',
+      // 'view revisions',
+      // 'revert revisions',
+      // 'create documents content',
+      // 'edit own documents content',
+      // 'edit any documents content',
+      // 'create products content',
+      // 'edit own products content',
+      // 'edit any products content',
+      // 'create faq content',
+      // 'edit own faq content',
+      // 'edit any faq content',
+      // 'edit any home_page content',
+      // 'create url aliases',
+      // 'view revision status messages',
+      // 'edit revisions',
+      // 'search content',
+      // 'use advanced search',
+      // 'translate user-defined strings',
+      // 'translate admin strings',
+      // 'access administration pages',
+      // 'view the administration theme',
+      // 'access toolbar'
+    // ));
+    // create_or_update_role('writer', $writer_permissions);
+    // create_or_update_role('approver', array_merge($writer_permissions,array(
+      // 'delete revisions',
+      // 'delete any documents content',
+      // 'delete any faq content',
+      // 'delete any products content',
+      // 'publish revisions',
+      // 'unpublish current revision',
+      // 'access user profiles'
+    // )));
+    
+    // kpr(field_read_field('field_occupation'));
+    // kpr(field_read_instance('user', 'field_occupation', 'user'));
+    
+    // field_delete_field('field_occupation');
+    // module_load_include('inc', 'lumf', 'taxonomy_helper');
+    
+    // create_or_update_taxonomy(array('name'=>'User Occupation','machine_name'=>'user_occupation'));
+    // create_or_update_taxonomy(array('name'=>'User Speciality','machine_name'=>'user_speciality'));
+    // create_or_update_taxonomy(array('name'=>'Region','machine_name'=>'region'));
+    
+    // module_load_include('inc', 'lumf', 'custom_block_helper');
+    // create_or_update_custom_block('faq_link', array(
+        // 'info' => 'Consult our FAQ',
+        // 'body' => 'For questions regarding this site, <a href="/faq">consult our FAQ.</a>',
+        // 'regions' => array(
+          // 'medinfo' => 'sidebar_second'
+        // )
+    // ));
+    
+    
+    
+    // module_load_include('inc', 'lumf', 'field_helper');
+    // create_or_update_fields(array(
+        // array('field_name' => 'field_user_title', 'type'=>'list_text', 'label'=>'Title', 'required'=> true,
+          // 'settings' => array(
+            // 'allowed_values' => array(
+              // 'Mrs' => 'Mrs',
+              // 'Mr' => 'Mr',
+              // 'Dr.' => 'Dr.',
+            // )
+          // )
+        // ),
+        // array('field_name' => 'field_first_name', 'type'=>'text', 'label'=>'First Name',       'required'=> true),
+        // array('field_name' => 'field_last_name',  'type'=>'text', 'label'=>'Last Name',        'required'=> true),
+        // array('field_name' => 'field_tel',        'type'=>'text', 'label'=>'Telephone Number', 'required'=> true),
+        // array('field_name' => 'field_fax',        'type'=>'text', 'label'=>'Fax Number'),
+        // array('field_name' => 'field_occupation', 'type'=>'taxonomy_term_reference', 'label'=>'Occupation', 'required'=> true,
+          // 'settings' => array(
+            // 'allowed_values' => array(0 => array('vocabulary' => 'user_occupation', 'parent' => 0))
+          // )
+        // ),
+        // array('field_name' => 'field_speciality', 'type'=>'taxonomy_term_reference', 'label'=>'Speciality', 'required'=> true,
+          // 'settings' => array(
+            // 'allowed_values' => array(0 => array('vocabulary' => 'user_speciality', 'parent' => 0))
+          // )
+        // ),
+        // array('field_name' => 'field_region',     'type'=>'taxonomy_term_reference', 'label'=>'Province or territory', 'required'=> true,
+          // 'settings' => array(
+            // 'allowed_values' => array(0 => array('vocabulary' => 'region', 'parent' => 0))
+          // )
+        // ),
+        // array('field_name' => 'field_licence',    'type'=>'text', 'label'=>'Licence Number', 'required'=> true),
+      // ),
+      // array('entity_type' => 'user', 'settings' => array('user_register_form'=>1))
+    // );
+      
+    
+    
+    
+    // module_load_include('inc', 'lumf', 'user_helper');
+    // create_or_update_role('user_admin',array('administer users','administer permissions','view the administration theme','access toolbar'));
+    // create_or_update_user('o2accounts',array(
+      // 'mail' => 'info@o2web.ca',
+      // 'roles' => 'user_admin'
+    // ));
+    
+    
+    // module_load_include('inc', 'lumf', 'field_helper');
+    // module_load_include('inc', 'lumf', 'taxonomy_helper');
+    // echo 'test';
+    
+    // $view = views_get_view('faq_index');
+    // $view->delete();
+    
+    
+    // module_load_include('inc', 'lumf', 'view_builder');
+    // $builder = new ViewBuilder('faq_index');
+    // $builder->conditions(array('type'=>'faq'));
+    // $builder->page_display()->display_options['path']='faq';
+    // $builder->save();
+    
+    // $view = new view();
+    // $view->name = 'test';
+    // $view->base_table = 'node';
+    // $handler = $view->new_display('default', 'Master', 'default');
+    // $handler->display->display_options['row_plugin'] = 'node';
+    
+    // $handler->display->display_options['filters']['status'] = array(
+      // 'id' => 'status',
+      // 'table' => 'node',
+      // 'field' => 'status',
+      // 'value' => 1,
+    // );
+    // $handler->display->display_options['filters']['type'] = array(
+      // 'id' => 'type',
+      // 'table' => 'node',
+      // 'field' => 'type',
+      // 'value' => array('faq' => 'faq')
+    // );
+    // $view->save();
+    
+    // kpr($view);
+    
+    // module_load_include('inc', 'lumf', 'field_helper');
+    
+    // create_or_update_fields(array(
+        // array('field_name' => 'body', 'label'=>'Question'),
+        // array('field_name' => 'field_answer', 'type'=>'text_long', 'label'=>'Answer')
+      // ),
+      // array('entity_type' => 'node','bundle' => 'faq')
+    // );
+  
+    // kpr(array(basename('git@projets.o2web.ca:drupal/my_blank_module.git','.git')));
+    // create_or_update_fields(array(
+        // array('field_name' => 'body'),
+        // array('field_name' => 'field_url',              'type'=>'text'),
+        // array('field_name' => 'field_product_category', 'type'=>'taxonomy_term_reference', 
+          // 'settings' => array(
+            // 'allowed_values' => array(0 => array('vocabulary' => 'product_category'))
+          // )
+        // ),
+      // ),
+      // array('entity_type' => 'node','bundle' => 'products')
+    // );
+    // ...
+  }
+  
+ 

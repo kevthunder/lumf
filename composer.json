@@ -1,0 +1,13 @@
+{
+    "name": "kgiguere/lumf",
+    "description": "'Less UI More Fun' is meant to free you from the tyranny of drupal UI and allow the programmer within you to be reborn",
+    "authors": [
+        {
+            "name": "Kevin Giguere",
+            "email": "kgiguere@o2web.ca"
+        }
+    ],
+    "require": {
+        "icanboogie/inflector": "*"
+    }
+}
